@@ -47,9 +47,11 @@
 #include "nanosvg.h"
 #define GHEADER "G21\nG90\n" //add here your specific G-codes
                                   //separated with newline \n
-#define CUTTERON "M7\n" //I chose this, change to yours or add comment
+//#define CUTTERON "M7\n" //I chose this, change to yours or add comment
+#define CUTTERON "\n" //I chose this, change to yours or add comment
                       // or add newline "\n" if not needed
-#define CUTTEROFF "M8\n" // same for this
+//#define CUTTEROFF "M8\n" // same for this
+#define CUTTEROFF "\n" // same for this
 #define GFOOTER "G00 X0 Y0\nM11\n" //end G-code here
 #define GMODE "M4\n"
 //#define DO_HPGL //uncomment to get hpgl-file named test.hpgl on current folder
