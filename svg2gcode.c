@@ -45,12 +45,12 @@
 //#define DO_HPGL //remove comment if you want to get a HPGL-code
 #define NANOSVG_IMPLEMENTATION
 #include "nanosvg.h"
-#define GHEADER "G21\nG90\n" //add here your specific G-codes
+#define GHEADER "G21\nG90\nM03 S600\n" //add here your specific G-codes
                                   //separated with newline \n
-#define CUTTERON "M5\n" //I chose this, change to yours or add comment
+#define CUTTERON "M03 S30\nG4 P0.250\n" //I chose this, change to yours or add comment
                       // or add newline "\n" if not needed
-#define CUTTEROFF "M3\n" // same for this
-#define GFOOTER "G00 X0 Y0\n" //end G-code here
+#define CUTTEROFF "M03 S600\nG4 P0.250\n" // same for this
+#define GFOOTER "G00 X0 Y0\nM03 S600\n" //end G-code here
 #define GMODE "M4\n"
 //#define DO_HPGL //uncomment to get hpgl-file named test.hpgl on current folder
 static float minf(float a, float b) { return a < b ? a : b; }
