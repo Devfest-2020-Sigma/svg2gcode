@@ -45,7 +45,7 @@
 //#define DO_HPGL //remove comment if you want to get a HPGL-code
 #define NANOSVG_IMPLEMENTATION
 #include "nanosvg.h"
-#define GHEADER "G21\nG90\nG10 P0 L20 X0 Y0 Z0\nM03 S800\nG4 P0.150\n" //add here your specific G-codes
+#define GHEADER "G21\nG90\nG10 P0 L20 X0 Y0 Z0\nM03 S800\nG4 P0.150\nG00 X0 Y0\n" //add here your specific G-codes
                                   //separated with newline \n
 #define CUTTERON "M03 S30\nG4 P0.100\n" //I chose this, change to yours or add comment
                       // or add newline "\n" if not needed
