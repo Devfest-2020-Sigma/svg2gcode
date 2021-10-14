@@ -45,12 +45,12 @@
 //#define DO_HPGL //remove comment if you want to get a HPGL-code
 #define NANOSVG_IMPLEMENTATION
 #include "nanosvg.h"
-#define GHEADER "G21\nG90\nG10 P0 L20 X0 Y0 Z0\nM03 S1200\nG4 P0.150\nG00 X0 Y0\n" //add here your specific G-codes
+#define GHEADER "G21\nG90\nG10 P0 L20 X0 Y0 Z0\nM03 S1200\nG4 P0.150\nG" //add here your specific G-codes
                                   //separated with newline \n
 #define CUTTERON "M03 S30\nG4 P0.100\n" //I chose this, change to yours or add comment
                       // or add newline "\n" if not needed
 #define CUTTEROFF "M03 S1200\nG4 P0.100\n" // same for this
-#define GFOOTER "G00 X0 Y0\nM03 S1200\n" //end G-code here
+#define GFOOTER "G00 X0 Y0\nM03 S1100\n" //end G-code here
 #define GMODE "M4\n"
 //#define DO_HPGL //uncomment to get hpgl-file named test.hpgl on current folder
 static float minf(float a, float b) { return a < b ? a : b; }
@@ -516,15 +516,10 @@ seedrand((float)time(0));
     }
     firstx = x = (paths[k].points[0]-bounds[0])*scale;
     firsty = y =  (flip ? (bounds[3]-paths[k].points[1])*scale : (paths[k].points[1]-bounds[1])*scale);
-    if(!cncMode)
-      fprintf(gcode,"G00 X%.1f Y%.1f Z%.1f\n",x,y,ztraverse);
-    else
-      fprintf(gcode,"G00 X%.1f Y%.1f\n",x,y);
+
+    fprintf(gcode,"G01 X%.1f Y%.1f Z%.1f F%.1f\n",x,y,zengage,feed);
     fprintf(gcode,"( city %d )\n",paths[k].city);
-    if(!cncMode)
-      fprintf(gcode,CUTTERON);
-    else
-      fprintf(gcode,"G01 Z%.1f F%.1f\n",zengage,feed);
+    fprintf(gcode,CUTTERON);
     printed=0;
     for(j=k;j<npaths;j++) {
       xold = x;
